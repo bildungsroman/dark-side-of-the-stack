@@ -248,7 +248,10 @@ Resources:
       DefinitionBody:
         swagger: '2.0'
         info: {}
-        paths: {}
+        paths:
+          /:
+            get:
+              responses: {}
       EndpointConfiguration: REGIONAL
       TracingEnabled: true
 Parameters:
