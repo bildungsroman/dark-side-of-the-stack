@@ -238,6 +238,19 @@ Resources:
           TABLE_ARN: !GetAtt usersTable.Arn
     Metadata:
       RuntimeOption: typescript
+  brokeApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub
+        - ${ResourceName} From Stack ${StackTagName} Environment ${EnvironmentTagName}
+        - ResourceName: brokeApi
+      StageName: !Ref EnvironmentAPIGatewayStageName
+      DefinitionBody:
+        swagger: '2.0'
+        info: {}
+        paths: {}
+      EndpointConfiguration: REGIONAL
+      TracingEnabled: true
 Parameters:
   StackeryStackTagName:
     Type: String
@@ -254,3 +267,6 @@ Parameters:
   EnvironmentTagName:
     Type: String
     Description: Environment Name (injected by Stackery at deployment time)
+  EnvironmentAPIGatewayStageName:
+    Type: String
+    Description: Environment name used for API Gateway Stage names (injected by Stackery at deployment time)
